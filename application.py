@@ -175,7 +175,7 @@ def gconnect():
     if result['issued_to'] != CLIENT_ID:
         response = make_response(json.dumps("Token's client ID does not ' \
         ' match app's."), 401)
-        print "Token's client ID does not match app's."
+        
         response.headers['Content-Type'] = 'application/json'
         return response
     stored_credentials = login_session.get('credentials')
@@ -188,7 +188,7 @@ def gconnect():
     # Store the access token in the session for later use.
     login_session['access_token'] = credentials.access_token
     login_session['gplus_id'] = gplus_id
-    print login_session['access_token']
+    
     # Get user info
     userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
     params = {'access_token': credentials.access_token, 'alt': 'json'}
@@ -214,7 +214,7 @@ def gconnect():
     output += ' " style = "width: 300px; height: 300px;border-radius:' \
         '150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;">'
     flash("you are now logged in as %s" % login_session['username'])
-    print "done!"
+    
     return output
 
     #######################3 User Helper Function #######################3
@@ -489,8 +489,8 @@ def newItem(catid):
     categories = session.query(Category).all()
     cat = session.query(Category).filter_by(id=catid).one()
     userid = getUserID(login_session['email'])
-    print "userid = % s" % userid
-    print "login_session['email' %s " % login_session['email']
+    
+    
     if request.method == 'POST':
         if request.form.get('title'):
             item = Item(title=request.form['title'], \
